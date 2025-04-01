@@ -38,14 +38,21 @@ function Contact() {
           </LoadScript>
         </Col>
       </Row>
-      <Row className="mt-4">
+      <Row>
         <Col>
           <Card className="p-3 shadow-sm">
             <Card.Body>
               <Card.Title>โซเชียลมีเดีย</Card.Title>
               <Card.Text>
-                Facebook: <a href="https://www.facebook.com/sharingmirrorfoundation/?locale=th_TH" target="_blank" rel="noopener noreferrer">ศูนย์แบ่งต่อ มูลนิธิกระจกเงา </a><br />
-                YouTube: <a href="https://www.youtube.com/channel/UCXsR1uSNB_0nNpWAWSbtvPQ" target="_blank" rel="noopener noreferrer">ศูนย์แบ่งต่อ มูลนิธิกระจกเงา</a><br />
+              <i class="fa-brands fa-facebook"></i> Facebook: 
+                <a href="https://www.facebook.com/sharingmirrorfoundation/?locale=th_TH" target="_blank" rel="noopener noreferrer">
+                  ศูนย์แบ่งต่อ มูลนิธิกระจกเงา
+                </a>
+                <br />
+                <i class="fa-brands fa-youtube"></i> YouTube: 
+                <a href="https://www.youtube.com/channel/UCXsR1uSNB_0nNpWAWSbtvPQ" target="_blank" rel="noopener noreferrer">
+                  ศูนย์แบ่งต่อ มูลนิธิกระจกเงา
+                </a>
               </Card.Text>
             </Card.Body>
           </Card>
