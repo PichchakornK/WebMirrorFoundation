@@ -8,7 +8,6 @@ const center = { lat: 13.868733951594397, lng: 100.57929018380483 }; // ตำ�
 function Contact() {
   return (
     <Container className="mt-5">
-      <h1 className="text-center mb-4">ติดต่อเรา</h1>
       <Row>
         <Col md={6}>
           <Card className="p-3 shadow-sm">

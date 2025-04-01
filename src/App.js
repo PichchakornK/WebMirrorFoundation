@@ -20,7 +20,7 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">หน้าแรก</Nav.Link>
             <Nav.Link as={Link} to="/about">เกี่ยวกับ</Nav.Link>
-            <Nav.Link as={Link} to="/contact">ติดต่อ</Nav.Link>
+            <Nav.Link as={Link} to="/contact">ติดต่อเรา</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
