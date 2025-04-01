@@ -8,9 +8,11 @@ function App() {
     const [activities, setActivities] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/activities")
-            .then((res) => res.json())
-            .then((data) => setActivities(data));
+      fetch('http://localhost:5000/your-api-endpoint')
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+    
     }, []);
 
     return (
