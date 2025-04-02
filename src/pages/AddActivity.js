@@ -1,99 +1,72 @@
 import React, { useState } from "react";
-import { db } from "../firebaseConfig";
+import { Form, Button } from "react-bootstrap";
+import { db } from "../firebase"; 
 import { collection, addDoc } from "firebase/firestore";
-import { Button, Form, Container } from "react-bootstrap";
 
-function AddActivity() {
-  const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
-  const [activity, setActivity] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
-  const [error, setError] = useState("");
+const AddActivity = () => {
+  const [activity, setActivity] = useState({
+    name: "",
+    description: "",
+    date: "",
+    location: "",
+    latitude: "",
+    longitude: "",
+  });
+
+  const handleChange = (e) => {
+    setActivity({ ...activity, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "activities"), {
-        name: name,
-        location: location,
-        activity: activity,
-        latitude: latitude,
-        longitude: longitude,
-        timestamp: new Date(),
-      });
-      setName("");
-      setLocation("");
-      setActivity("");
-      setLatitude("");
-      setLongitude("");
-      setError("");
+      await addDoc(collection(db, "activities"), activity);
       alert("เพิ่มกิจกรรมสำเร็จ!");
-    } catch (err) {
-      setError("ไม่สามารถเพิ่มข้อมูลได้");
+    } catch (error) {
+      console.error("Error adding document: ", error);
     }
   };
 
   return (
-    <Container>
+    <div className="container">
       <h2>เพิ่มกิจกรรม</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>ชื่อกิจกรรม</Form.Label>
-          <Form.Control
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+          <Form.Control type="text" name="name" onChange={handleChange} required />
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>สถานที่</Form.Label>
-          <Form.Control
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
+          <Form.Label>รายละเอียด</Form.Label>
+          <Form.Control as="textarea" name="description" onChange={handleChange} required />
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>กิจกรรมที่ทำ</Form.Label>
-          <Form.Control
-            type="text"
-            value={activity}
-            onChange={(e) => setActivity(e.target.value)}
-            required
-          />
+          <Form.Label>วันที่</Form.Label>
+          <Form.Control type="date" name="date" onChange={handleChange} required />
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>ละติจูด</Form.Label>
-          <Form.Control
-            type="number"
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
-            required
-          />
+          <Form.Label>ที่อยู่</Form.Label>
+          <Form.Control type="text" name="location" onChange={handleChange} required />
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>ลองจิจูด</Form.Label>
-          <Form.Control
-            type="number"
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-            required
-          />
+          <Form.Label>ละติจูด (Latitude)</Form.Label>
+          <Form.Control type="text" name="latitude" onChange={handleChange} required />
         </Form.Group>
 
-        {error && <div className="alert alert-danger">{error}</div>}
+        <Form.Group>
+          <Form.Label>ลองจิจูด (Longitude)</Form.Label>
+          <Form.Control type="text" name="longitude" onChange={handleChange} required />
+        </Form.Group>
 
-        <Button type="submit">เพิ่มกิจกรรม</Button>
+        <Button variant="primary" type="submit">
+          บันทึกกิจกรรม
+        </Button>
       </Form>
-    </Container>
+    </div>
   );
-}
+};
 
 export default AddActivity;

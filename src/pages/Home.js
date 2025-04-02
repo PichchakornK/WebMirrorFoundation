@@ -63,15 +63,26 @@ function Home() {
         </Form>
   
         <Form>
-          <Form.Group controlId="filterSelect">
-            <Form.Label>เลือกประเภท</Form.Label>
-            <Form.Control as="select" value={filter} onChange={(e) => setFilter(e.target.value)}>
-              <option value="activities">กิจกรรม</option>
-              <option value="deliveries">การส่งของ</option>
-              <option value="all">ทั้งหมด</option>
-            </Form.Control>
-          </Form.Group>
-        </Form>
+  <Form.Group controlId="filterSelect">
+    <Form.Label>เลือกประเภทกิจกรรม</Form.Label>
+    <Form.Control as="select" value={filter} onChange={(e) => setFilter(e.target.value)}>
+      <option value="">-- เลือกประเภทกิจกรรม --</option>
+      <option value="deliveries">กิจกรรมกวักน้องมาเรียน</option>
+      <option value="แบ่งต่อเรนเจอร์">กิจกรรมแบ่งต่อเรนเจอร์</option>
+      <option value="กล่องช่วยหมอ">กิจกรรมกล่องช่วยหมอ</option>
+      <option value="ต้นปันใจ">กิจกรรมต้นปันใจ</option>
+      <option value="ห้องดนตรีแบ่งต่อ">กิจกรรมห้องดนตรีแบ่งต่อ</option>
+      <option value="recycle run">กิจกรรม recycle run</option>
+      <option value="mirror chance talent">กิจกรรม mirror chance talent</option>
+      <option value="ฝากยิ้มกลับบ้าน">กิจกรรมฝากยิ้มกลับบ้าน</option>
+      <option value="ตาต่อตา">กิจกรรมตาต่อตา</option>
+      <option value="ธนาคารโอกาส">ธนาคารโอกาส</option>
+      <option value="ถนนครูเดิน">กิจกรรมถนนครูเดิน</option>
+      <option value="ส่งของบริจาค">ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ</option>
+    </Form.Control>
+  </Form.Group>
+</Form>
+
   
         {/* แผนที่ Google */}
         <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
