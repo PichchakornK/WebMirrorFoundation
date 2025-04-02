@@ -1,40 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import { db } from "../firebase";
+import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import { db } from "../firebase"; // Firebase import
 import { collection, getDocs } from "firebase/firestore";
 
-const ActivityMap = () => {
+const mapContainerStyle = { width: "100%", height: "500px" };
+const defaultCenter = { lat: 13.736717, lng: 100.523186 }; // กรุงเทพฯ
+
+function ActivityMap() {
   const [activities, setActivities] = useState([]);
+  const [selectedActivity, setSelectedActivity] = useState(null);
 
   useEffect(() => {
     const fetchActivities = async () => {
       const querySnapshot = await getDocs(collection(db, "activities"));
-      const activitiesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const activitiesData = querySnapshot.docs.map(doc => doc.data());
       setActivities(activitiesData);
     };
+
     fetchActivities();
   }, []);
 
+  const parseDate = (date) => {
+    // หาก date เป็น Timestamp ของ Firestore ให้แปลงเป็น Date
+    if (date && date.seconds) {
+      return new Date(date.seconds * 1000).toLocaleDateString();
+    }
+    // หาก date เป็นสตริงหรือวันที่ที่สามารถแปลงได้
+    const parsedDate = new Date(date);
+    return isNaN(parsedDate) ? "ไม่ทราบวันที่" : parsedDate.toLocaleDateString();
+  };
+
   return (
-    <div className="container">
-      <h2>แผนที่กิจกรรม</h2>
-      <MapContainer center={[13.736717, 100.523186]} zoom={6} style={{ height: "500px", width: "100%" }}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {activities.map(activity => (
-          <Marker key={activity.id} position={[parseFloat(activity.latitude), parseFloat(activity.longitude)]}>
-            <Popup>
-              <b>{activity.name}</b><br />
-              {activity.description}<br />
-              วันที่: {activity.date}
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+    <div>
+      <h2>กิจกรรมทั้งหมดบนแผนที่</h2>
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+        <GoogleMap mapContainerStyle={mapContainerStyle} center={defaultCenter} zoom={6}>
+          {activities.map((act, index) => (
+            <Marker 
+              key={index} 
+              position={{ lat: parseFloat(act.latitude), lng: parseFloat(act.longtitude) }} 
+              title={act.name}
+              onClick={() => setSelectedActivity(act)}
+            />
+          ))}
+
+          {selectedActivity && (
+            <InfoWindow
+              position={{
+                lat: parseFloat(selectedActivity.latitude),
+                lng: parseFloat(selectedActivity.longtitude),
+              }}
+              onCloseClick={() => setSelectedActivity(null)}
+            >
+              <div>
+                <h3>{selectedActivity.name}</h3>
+                <p>{selectedActivity.description}</p>
+                <p><strong>วันที่:</strong> {parseDate(selectedActivity.date)}</p>
+                <p><strong>ที่อยู่:</strong> {selectedActivity.location}</p>
+                <p><strong>ละติจูด:</strong> {selectedActivity.latitude}</p>
+                <p><strong>ลองจิจูด:</strong> {selectedActivity.longtitude}</p>
+                {selectedActivity.imgURL && (
+                  <img 
+                    src={selectedActivity.imgURL} 
+                    alt={selectedActivity.name} 
+                    style={{ width: "150px", height: "100px", objectFit: "cover", borderRadius: "8px" }} 
+                  />)}
+
+              </div>
+            </InfoWindow>
+          )}
+
+        </GoogleMap>
+      </LoadScript>
     </div>
   );
-};
+}
 
 export default ActivityMap;
