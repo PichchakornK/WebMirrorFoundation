@@ -2,13 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from 'C:/Users/User/OneDrive - kmutnb.ac.th/Documents/WebMirrorFoundation/donation-center/src/pics/logo.jpg';
+import logo from './pics/logo.jpg';
 import Contact from './pages/Contact.js';
 import Home from "./pages/Home.js";
 import About from "./pages/About.js";
 import AddActivity from "./pages/AddActivity.js";
 import ActivityMap from "./pages/ActivitiyMap.js";
 import Activities from "./pages/Activities.js"
+
 
 function App() {
   return (
