@@ -1,5 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { Carousel, Row, Col, Card } from 'react-bootstrap';
 import centerImage1 from '../pics/แบ่งต่อ1.jpg'; 
 import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
@@ -54,7 +55,6 @@ function About() {
         <li>ไปตรวจสอบองค์กรที่ต้องการความช่วยเหลือทั้งพื้นที่ใหม่และมีการขอความช่วยเหลือ เพื่อหาทางส่งของบริจาคและจัดกิจกรรมเพื่อช่วยเหลือ</li>
         <li>ร่วมมือสร้างเครือข่ายและเปิดพื้นที่ใหม่ๆ เพื่อพัฒนาศูนย์แบ่งต่อ</li>
       </ul>
-
       {/* Grid Layout: แสดงรูปภาพแบบตาราง */}
       <h3>กิจกรรมของศูนย์แบ่งต่อ</h3>
       <Row>
@@ -181,6 +181,7 @@ function About() {
           </Card>
         </Col>
       </Row>
+      
     </div>
   );
 }

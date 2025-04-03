@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { db } from "../firebase";
 import { Form, Button, Alert } from "react-bootstrap";
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
@@ -19,6 +19,14 @@ function AddActivity() {
     imgURL: "",
   });
 
+  // ใช้ useEffect เพื่อตรวจสอบสถานะการล็อกอิน
+  useEffect(() => {
+    const token = localStorage.getItem("userToken");
+    if (token) {
+      setIsAdmin(true); // หากมี token ให้ผู้ใช้เป็น admin
+    }
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -33,12 +41,23 @@ function AddActivity() {
 
       if (userSnap.exists() && userSnap.data().role === "admin") {
         setIsAdmin(true);
+        localStorage.setItem("userToken", user.uid); // เก็บ token ใน localStorage
       } else {
         setError("คุณไม่มีสิทธิ์เข้าถึงหน้านี้");
       }
     } catch (error) {
       setError("เข้าสู่ระบบล้มเหลว: " + error.message);
     }
+  };
+
+  const handleLogout = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      setIsAdmin(false);
+      localStorage.removeItem("userToken"); // ลบข้อมูลการล็อกอิน
+    }).catch((error) => {
+      console.error("Error signing out: ", error);
+    });
   };
 
   const handleChange = (e) => {
@@ -114,6 +133,20 @@ function AddActivity() {
             <Button variant="success" type="submit">บันทึกกิจกรรม</Button>
           </Form>
         </div>
+      )}
+      {/* ปุ่มออกจากระบบที่มุมขวาล่าง */}
+      {isAdmin && (
+        <Button
+          variant="secondary"
+          onClick={handleLogout}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+          }}
+        >
+          ออกจากระบบ
+        </Button>
       )}
     </div>
   );
