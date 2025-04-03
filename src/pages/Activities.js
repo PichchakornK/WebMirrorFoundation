@@ -15,9 +15,11 @@ function Activities() {
         fetchData();
     }, []);
 
+    
+
     return (
         <div className="container">
-            <h2>กิจกรรม</h2>
+            <h2>กิจกรรมที่เราเคยทำ</h2>
             <Row>
                 {activities.map((activity, index) => (
                     <Col key={index} md={4}>

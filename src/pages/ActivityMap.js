@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import { db } from "../firebase"; // Firebase import
 import { collection, getDocs } from "firebase/firestore";
+import background from "../pics/background.jpg";
 
 const mapContainerStyle = { width: "100%", height: "500px" };
 const defaultCenter = { lat: 13.736717, lng: 100.523186 }; // กรุงเทพฯ
+
+
 
 function ActivityMap() {
   const [activities, setActivities] = useState([]);
@@ -30,9 +33,11 @@ function ActivityMap() {
     return isNaN(parsedDate) ? "ไม่ทราบวันที่" : parsedDate.toLocaleDateString();
   };
 
-  return (
+  return (       
     <div>
-      <h2>กิจกรรมทั้งหมดบนแผนที่</h2>
+      <img src={background} alt="background" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+
+      <h2 style={{margin: "5%", textAlign: "center"}}>กิจกรรมทั้งหมดบนแผนที่</h2>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <GoogleMap mapContainerStyle={mapContainerStyle} center={defaultCenter} zoom={6}>
           {activities.map((act, index) => (
