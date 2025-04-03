@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Route, Routes, Link } from "react-router-dom";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
-import { getAuth, signOut } from "firebase/auth";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './pics/logo.jpg';
 import Contact from './pages/Contact.js';
@@ -11,26 +10,6 @@ import ActivityMap from "./pages/ActivityMap.js";
 import Activities from "./pages/Activities.js";
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("userToken");
-    if (token) {
-      setIsAdmin(true); // หากมี token ให้ผู้ใช้เป็น admin
-    }
-  }, []);
-
-  const handleLogout = () => {
-    const auth = getAuth();
-    signOut(auth).then(() => {
-      setIsAdmin(false);
-      localStorage.removeItem("userToken"); // ลบข้อมูลการล็อกอิน
-      window.location.href = "/activity-map"; // ไปที่หน้าแรกหลังจากออกจากระบบ
-    }).catch((error) => {
-      console.error("Error signing out: ", error);
-    });
-  };
-
   return (
     <div>
       <Navbar bg="dark" variant="dark">
@@ -45,18 +24,13 @@ function App() {
             <Nav.Link as={Link} to="/contact">ติดต่อเรา</Nav.Link>
             <Nav.Link as={Link} to="/add-activity">เพิ่มกิจกรรม</Nav.Link>
           </Nav>
-          {/* ปุ่มออกจากระบบที่อยู่มุมขวา */}
-          {isAdmin && (
-            <Button variant="outline-light" onClick={handleLogout} className="ms-auto">
-              ออกจากระบบ
-            </Button>
-          )}
         </Container>
       </Navbar>
 
       <div className="App">
         <div className="container mt-4">
           <Routes>
+            <Route path="/" element={<ActivityMap />} /> {/* เพิ่ม path="/" สำหรับหน้าแรก */}
             <Route path="/activity-map" element={<ActivityMap />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
