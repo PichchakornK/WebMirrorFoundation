@@ -57,8 +57,7 @@ function ActivityMap() {
                 <p>{selectedActivity.description}</p>
                 <p><strong>วันที่:</strong> {parseDate(selectedActivity.date)}</p>
                 <p><strong>ที่อยู่:</strong> {selectedActivity.location}</p>
-                <p><strong>ละติจูด:</strong> {selectedActivity.latitude}</p>
-                <p><strong>ลองจิจูด:</strong> {selectedActivity.longtitude}</p>
+
                 {selectedActivity.imgURL && (
                   <img 
                     src={selectedActivity.imgURL} 
