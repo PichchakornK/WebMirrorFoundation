@@ -1,10 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Carousel, Row, Col, Card } from 'react-bootstrap';
-import centerImage1 from '../pics/แบ่งต่อ1.jpg'; 
-import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
-import centerImage3 from '../pics/แบ่งต่อ3.jpg'; 
-import centerImage4 from '../pics/แบ่งต่อ4.jpg'; 
 
 function About() {
   return (
@@ -44,43 +39,6 @@ function About() {
         <li>ไปตรวจสอบองค์กรที่ต้องการความช่วยเหลือทั้งพื้นที่ใหม่และมีการขอความช่วยเหลือ เพื่อหาทางส่งของบริจาคและจัดกิจกรรมเพื่อช่วยเหลือ</li>
         <li>ร่วมมือสร้างเครือข่ายและเปิดพื้นที่ใหม่ๆ เพื่อพัฒนาศูนย์แบ่งต่อ</li>
       </ul>
-
-      {/* Grid Layout: แสดงรูปภาพแบบตาราง */}
-      <h3>กิจกรรมของศูนย์แบ่งต่อ</h3>
-      <Row>
-        <Col md={3} className="mb-4">
-          <Card>
-            <Card.Img variant="top" src={centerImage1} />
-            <Card.Body>
-              <Card.Title>กิจกรรมที่ 1</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3} className="mb-4">
-          <Card>
-            <Card.Img variant="top" src={centerImage2} />
-            <Card.Body>
-              <Card.Title>กิจกรรมที่ 2</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3} className="mb-4">
-          <Card>
-            <Card.Img variant="top" src={centerImage3} />
-            <Card.Body>
-              <Card.Title>กิจกรรมที่ 3</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={3} className="mb-4">
-          <Card>
-            <Card.Img variant="top" src={centerImage4} />
-            <Card.Body>
-              <Card.Title>กิจกรรมที่ 4</Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
     </div>
   );
 }

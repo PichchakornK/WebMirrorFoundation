@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const auth = getAuth(); // ✅ ใช้ getAuth() ตรง ๆ ได้เลย
+  const auth = getAuth(); 
 
 
   const handleLogin = async (e) => {
