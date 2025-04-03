@@ -20,13 +20,13 @@ function Activities() {
     return (
         <div className="container">
             <h2>กิจกรรมที่เราเคยทำ</h2>
-            <Row>
+            <Row className="g-4 mb-5">
                 {activities.map((activity, index) => (
-                    <Col key={index} md={4}>
+                    <Col key={index} md={4} className="d-flex">
                         <Card>
-                            <Card.Body>
+                            <Card.Body className="d-flex flex-column">
                                 <Card.Title>{activity.name}</Card.Title>
-                                <Card.Text>{activity.description}</Card.Text>
+                                <Card.Text className="flex-grow-1">{activity.description}</Card.Text>
                             </Card.Body>
                         </Card>
                     </Col>
