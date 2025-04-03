@@ -1,6 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { Carousel, Row, Col, Card } from 'react-bootstrap';
 import centerImage1 from '../pics/แบ่งต่อ1.jpg'; 
 import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
@@ -181,7 +180,7 @@ function About() {
           </Card>
         </Col>
       </Row>
-      
+
     </div>
   );
 }
