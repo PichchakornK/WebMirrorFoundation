@@ -330,6 +330,7 @@ function ActivityMap() {
                   <Card.Body>
                     <Card.Title>
                       <FaHeart className="mr-2" />ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ
+
                     </Card.Title>
                   </Card.Body>
                 </Card>
