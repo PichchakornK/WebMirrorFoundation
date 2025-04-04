@@ -12,17 +12,23 @@ import ActivityDetail from "./pages/ActivityDetail.js";
 function App() {
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" >
         <Container>
+          {/* โลโก้ */}
           <Navbar.Brand as={Link} to="/activity-map">
-            <img src={logo} alt="Logo" style={{ height: '40px' }} />
+            <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '10px' }} />
           </Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/activity-map">หน้าแรก</Nav.Link>
-            <Nav.Link as={Link} to="/activities">กิจกรรม</Nav.Link>
-            <Nav.Link as={Link} to="/contact">ติดต่อเรา</Nav.Link>
-            <Nav.Link as={Link} to="/add-activity">เพิ่มกิจกรรม</Nav.Link>
-          </Nav>
+          
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            {/* จัดเมนูให้อยู่ตรงกลาง */}
+            <Nav className="mx-auto"> {/* ใช้ mx-auto เพื่อจัดให้อยู่กลาง */}
+              <Nav.Link as={Link} to="/activity-map" className="mx-3">หน้าแรก</Nav.Link>
+              <Nav.Link as={Link} to="/activities" className="mx-3">กิจกรรม</Nav.Link>
+              <Nav.Link as={Link} to="/contact" className="mx-3">ติดต่อเรา</Nav.Link>
+              <Nav.Link as={Link} to="/add-activity" className="mx-3">เพิ่มกิจกรรม</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 
