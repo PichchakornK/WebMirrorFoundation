@@ -1,0 +1,9 @@
+.text-truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4 !important;
+    overflow: hidden;
+    line-height: 1.5em; /* ความสูงบรรทัด */
+    max-height: calc(1.5em * 4); /* คำนวณความสูง 4 บรรทัด */
+    text-overflow: ellipsis;
+}

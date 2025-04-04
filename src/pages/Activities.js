@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Carousel, Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import '../Activities.css'
+import ActivityCard from "./ActivityCard";
 
 function Activities() {
     const [activities, setActivities] = useState([]);
@@ -22,14 +24,9 @@ function Activities() {
             <h2>กิจกรรมที่เราเคยทำ</h2>
             <Row className="g-4 mb-5">
                 {activities.map((activity, index) => (
-                    <Col key={index} md={4} className="d-flex">
-                        <Card>
-                            <Card.Body className="d-flex flex-column">
-                                <Card.Title>{activity.name}</Card.Title>
-                                <Card.Text className="flex-grow-1">{activity.description}</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                     <Col key={index} md={4} className="d-flex">
+                     <ActivityCard name={activity.name} description={activity.description} />
+                 </Col>
                 ))}
             </Row>
         </div>
