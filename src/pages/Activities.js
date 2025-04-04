@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Col, Accordion, ListGroup } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Accordion, ListGroup } from 'react-bootstrap';
+import { Row, Col, Accordion, ListGroup } from "react-bootstrap"; // ✅ ใช้อันนี้พอ!
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function Activities() {
-
     const [groupedActivities, setGroupedActivities] = useState({});
     const navigate = useNavigate();
 
