@@ -8,12 +8,14 @@ const ActivityCard = ({ name, description }) => {
         <Card className="h-100">
             <Card.Body className="d-flex flex-column">
                 <Card.Title>{name}</Card.Title>
-                <Card.Text className={expanded ? "" : "text-truncate"}>
+                <Card.Text className={expanded ? "text-full" : "text-truncate"}>
                     {description}
                 </Card.Text>
-                <Button variant="primary" onClick={() => setExpanded(!expanded)}>
-                    {expanded ? "ย่อข้อความ" : "อ่านรายละเอียดเพิ่มเติม"}
-                </Button>
+                <div className="mt-auto">
+                    <Button variant="primary" onClick={() => setExpanded(!expanded)}>
+                        {expanded ? "ย่อข้อความ" : "อ่านรายละเอียดเพิ่มเติม"}
+                    </Button>
+                </div>
             </Card.Body>
         </Card>
     );
