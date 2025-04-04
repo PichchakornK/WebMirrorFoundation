@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Col, Accordion, ListGroup } from "react-bootstrap"; // ✅ ใช้อันนี้พอ!
+import { Row, Col, Accordion, ListGroup } from "react-bootstrap";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -38,15 +38,15 @@ function Activities() {
     return (
         <motion.div 
             className="container mt-5"
-            initial={{ opacity: 0, y: 50 }} 
+            initial={{ opacity: 0, y: 30 }} 
             animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
         >
             <motion.h2 
                 className="text-center mb-4"
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
             >
                 🌟 กิจกรรมที่เราเคยทำ 🌟
             </motion.h2>
@@ -55,9 +55,9 @@ function Activities() {
                 {Object.keys(groupedActivities).map((category, index) => (
                     <motion.div 
                         key={index}
-                        initial={{ opacity: 0, y: 30 }} 
+                        initial={{ opacity: 0, y: 20 }} 
                         animate={{ opacity: 1, y: 0 }} 
-                        transition={{ delay: index * 0.2, duration: 0.5 }}
+                        transition={{ delay: index * 0.15, duration: 0.5, ease: "easeOut" }}
                     >
                         <Accordion.Item eventKey={index.toString()}>
                             <Accordion.Header>{category}</Accordion.Header>
@@ -66,9 +66,9 @@ function Activities() {
                                     {Object.keys(groupedActivities[category]).map((name) => (
                                         <motion.div
                                             key={name}
-                                            whileHover={{ scale: 1.05, rotate: 2 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            transition={{ type: "spring", stiffness: 300 }}
+                                            whileHover={{ scale: 1.02, rotate: 1 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            transition={{ type: "spring", stiffness: 150, damping: 10 }}
                                         >
                                             <ListGroup.Item
                                                 action
