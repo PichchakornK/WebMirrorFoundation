@@ -329,7 +329,11 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage13} />
                   <Card.Body>
                     <Card.Title>
+<<<<<<< HEAD
                       ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ
+=======
+                      <FaHeart className="mr-2" />ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ
+>>>>>>> 4026739c322aad33873d04454b252e2608465d40
                     </Card.Title>
                   </Card.Body>
                 </Card>
