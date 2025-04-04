@@ -17,16 +17,17 @@ function Activities() {
 
             // จัดกลุ่มกิจกรรมตามประเภท
             const groupedByCategory = data.reduce((acc, activity) => {
-                if (!acc[activity.category]) {
-                    acc[activity.category] = {};
+                const category = activity.category || "ประเภทกิจกรรม";  // Fallback if category is missing
+                if (!acc[category]) {
+                    acc[category] = {};
                 }
-                if (!acc[activity.category][activity.name]) {
-                    acc[activity.category][activity.name] = [];
+                if (!acc[category][activity.name]) {
+                    acc[category][activity.name] = [];
                 }
-                acc[activity.category][activity.name].push(activity);
+                acc[category][activity.name].push(activity);
                 return acc;
             }, {});
-
+            
             setGroupedActivities(groupedByCategory);
         };
         fetchData();
