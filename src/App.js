@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './pics/logo.jpg';
@@ -8,6 +8,7 @@ import AddActivity from "./pages/AddActivity.js";
 import ActivityMap from "./pages/ActivityMap.js";
 import Activities from "./pages/Activities.js";
 import ActivityDetail from "./pages/ActivityDetail.js";
+import './app2.css'
 
 function App() {
   return (
@@ -23,10 +24,10 @@ function App() {
           <Navbar.Collapse id="basic-navbar-nav">
             {/* จัดเมนูให้อยู่ตรงกลาง */}
             <Nav className="mx-auto"> {/* ใช้ mx-auto เพื่อจัดให้อยู่กลาง */}
-              <Nav.Link as={Link} to="/activity-map" className="mx-3">หน้าแรก</Nav.Link>
-              <Nav.Link as={Link} to="/activities" className="mx-3">กิจกรรม</Nav.Link>
-              <Nav.Link as={Link} to="/contact" className="mx-3">ติดต่อเรา</Nav.Link>
-              <Nav.Link as={Link} to="/add-activity" className="mx-3">เพิ่มกิจกรรม</Nav.Link>
+              <NavLink to="/activity-map" className="nav-link-custom mx-3" activeClassName="active">หน้าแรก</NavLink>
+              <NavLink to="/activities" className="nav-link-custom mx-3" activeClassName="active">กิจกรรม</NavLink>
+              <NavLink to="/contact" className="nav-link-custom mx-3" activeClassName="active">ติดต่อเรา</NavLink>
+              <NavLink to="/add-activity" className="nav-link-custom mx-3" activeClassName="active">เพิ่มกิจกรรม</NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
