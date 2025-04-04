@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const ActivityCard = ({ name, description }) => {
-    const [expanded, setExpanded] = useState(false);
-
+function ActivityCard({ id, name, description, image }) {
     return (
-        <Card className="h-100">
-            <Card.Body className="d-flex flex-column">
+        <Card>
+            <Card.Img variant="top" src={image} alt={name} />
+            <Card.Body>
                 <Card.Title>{name}</Card.Title>
-                <Card.Text className={expanded ? "" : "text-truncate"}>
-                    {description}
-                </Card.Text>
-                <Button variant="primary" onClick={() => setExpanded(!expanded)}>
-                    {expanded ? "ย่อข้อความ" : "อ่านรายละเอียดเพิ่มเติม"}
-                </Button>
+                <Card.Text>{description}</Card.Text>
+                <Link to={`/activity/${id}`}>
+                    <Button variant="primary">ดูรายละเอียด</Button>
+                </Link>
             </Card.Body>
         </Card>
     );
-};
+}
 
 export default ActivityCard;

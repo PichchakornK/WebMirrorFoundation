@@ -1,34 +1,67 @@
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Card, Button } from 'react-bootstrap';
+import { Row, Col, Accordion, ListGroup } from 'react-bootstrap';
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import '../Activities.css'
-import ActivityCard from "./ActivityCard";
+import { useNavigate } from "react-router-dom";
 
 function Activities() {
     const [activities, setActivities] = useState([]);
+    const [groupedActivities, setGroupedActivities] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             const querySnapshot = await getDocs(collection(db, "activities"));
-            setActivities(querySnapshot.docs.map(doc => doc.data()));
+            const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            // จัดกลุ่มกิจกรรมตามประเภท
+            const groupedByCategory = data.reduce((acc, activity) => {
+                if (!acc[activity.category]) {
+                    acc[activity.category] = {};
+                }
+                if (!acc[activity.category][activity.name]) {
+                    acc[activity.category][activity.name] = [];
+                }
+                acc[activity.category][activity.name].push(activity);
+                return acc;
+            }, {});
+
+            setGroupedActivities(groupedByCategory);
         };
         fetchData();
     }, []);
 
-    
+    // ฟังก์ชันเมื่อคลิกชื่อกิจกรรม → นำไปหน้าแสดงรายละเอียด
+    const handleActivityClick = (name, activities) => {
+        navigate(`/activity/${name}`, { state: { activities } });
+    };
 
     return (
         <div className="container">
             <h2>กิจกรรมที่เราเคยทำ</h2>
-            <Row className="g-4 mb-5">
-                {activities.map((activity, index) => (
-                     <Col key={index} md={4} className="d-flex">
-                     <ActivityCard name={activity.name} description={activity.description} />
-                 </Col>
+
+            {/* แสดงกิจกรรมแบบจัดกลุ่มตามหมวดหมู่ */}
+            <Accordion defaultActiveKey="0">
+                {Object.keys(groupedActivities).map((category, index) => (
+                    <Accordion.Item key={index} eventKey={index.toString()}>
+                        <Accordion.Header>{category}</Accordion.Header>
+                        <Accordion.Body>
+                            <ListGroup>
+                                {Object.keys(groupedActivities[category]).map((name) => (
+                                    <ListGroup.Item 
+                                        key={name} 
+                                        action 
+                                        onClick={() => handleActivityClick(name, groupedActivities[category][name])}
+                                    >
+                                        {name}
+                                    </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                        </Accordion.Body>
+                    </Accordion.Item>
                 ))}
-            </Row>
+            </Accordion>
         </div>
     );
 }
