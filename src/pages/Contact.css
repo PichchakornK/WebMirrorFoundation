@@ -53,3 +53,14 @@
   a:hover {
     color: #ff6600;
   }
+
+
+  .contact-background {
+    background-color: #fff9db; /* สีเหลืองอ่อน */
+    min-height: 100vh; /* ให้พื้นหลังครอบคลุมเต็มหน้าจอ */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
