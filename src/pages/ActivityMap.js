@@ -100,7 +100,7 @@ function ActivityMap() {
     
           {/* Grid Layout: แสดงรูปภาพแบบตาราง */}
     
-          <h3 className="text-center mb-4">กิจกรรมของศูนย์แบ่งต่อ</h3>
+          <h3 className="text-center mb-6" style={{ margin: "5%"}}>กิจกรรมของศูนย์แบ่งต่อ</h3>
           <Row>
             <Col md={4} className="mb-4">
               <motion.div 
