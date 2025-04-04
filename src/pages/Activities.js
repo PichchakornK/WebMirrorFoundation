@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col, Accordion, ListGroup } from "react-bootstrap";
-=======
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Accordion, ListGroup } from 'react-bootstrap';
->>>>>>> 9c930b7eaa2cf3d15d42eda9d61a57d7d217a519
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function Activities() {
-<<<<<<< HEAD
-=======
-    // const [activities, setActivities] = useState([]);
->>>>>>> 9c930b7eaa2cf3d15d42eda9d61a57d7d217a519
+
     const [groupedActivities, setGroupedActivities] = useState({});
     const navigate = useNavigate();
 
