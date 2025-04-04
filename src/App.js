@@ -8,6 +8,7 @@ import About from "./pages/About.js";
 import AddActivity from "./pages/AddActivity.js";
 import ActivityMap from "./pages/ActivityMap.js";
 import Activities from "./pages/Activities.js";
+import ActivityDetail from "./pages/ActivityDetail.js";
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/activities" element={<Activities />} />
             <Route path="/add-activity" element={<AddActivity />} />
+            <Route path="/" element={<Activities />} />
+            <Route path="/activity/:name" element={<ActivityDetail />} />
           </Routes>
         </div>
       </div>
