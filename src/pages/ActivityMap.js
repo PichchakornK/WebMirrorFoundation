@@ -111,7 +111,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage1} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมกวักน้องมาเรียน
+                      กิจกรรมกวักน้องมาเรียน
                     </Card.Title>
                     <Card.Text>
                     กิจกรรมที่มีความมุ่งหมายที่จะช่วยลดเด็กเสี่ยงหลุดจากระบบ และดึงเด็กที่หลุดจากระบบกลับมาเรียนในระบบการศึกษาเพื่อโอกาสของอนาคตเด็กให้ได้
@@ -130,7 +130,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage2} />
                   <Card.Body>
                     <Card.Title>
-                      <FaRegHandshake className="mr-2" />กิจกรรมพ้นวิกฤติ
+                      กิจกรรมพ้นวิกฤติ
                     </Card.Title>
                     <Card.Text>
                     กิจกรรมที่นำวัสดุต่างๆไปช่วยซ่อมแซมปรับปรุงที่อยู่อาศัยที่อยู่ในภาวะวิกฤติ ที่อาจมีผลต่อคุณภาพชีวิต ไปจนถึงเสี่ยงอันตรายต่อชีวิต โดยวัสดุที่นำไปทำมีทั้งวัสดุเหลือใช้ วัสดุที่ได้รับบริจาคมาต่างๆ
@@ -149,7 +149,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage3} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมแบ่งต่อเรนเจอร์
+                      กิจกรรมแบ่งต่อเรนเจอร์
                     </Card.Title>
                     <Card.Text>
                     กิจกรรมที่จะไปสร้างแรงบันดาลใจให้เด็กๆตามโรงเรียน ซ่อมแซมพื้นที่ในโรงเรียนให้พร้อมใช้งาน และกิจกรรมที่ไปสร้างกำลังใจให้ผู้คนต่างๆ เช่น กิจกรรมรดน้ำดำหัวดิลิเวอร์รี่, กิจกรรมซานต้า is you
@@ -167,7 +167,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage4} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมกล่องช่วยหมอ
+                      กิจกรรมกล่องช่วยหมอ
                     </Card.Title>
                     <Card.Text>
                     กิจกรรมที่สร้างทีมอาสาสมัครช่วยกันผลิตของจากวัสดุต่างๆมาส่งให้ทีมแพทย์ เช่น ถุงสวมเท้าชุด ppe, ถักปลอกมือกันคนไข้ดึงสายน้ำเกลือ, ถุงใส่สายฟอกไต
@@ -185,7 +185,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage5} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมต้นปันใจ
+                      กิจกรรมต้นปันใจ
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมที่ให้อาสาช่วยจัดหากระถางต้นไม้ และต้นไม้เล็กๆเพื่อเพ้นท์และส่งต่อให้กลุ่มผู้ป่วยในแผนกจิตเวช
@@ -203,7 +203,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage6} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมห้องดนตรีแบ่งต่อ
+                      กิจกรรมห้องดนตรีแบ่งต่อ
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมที่รวบรวมเครื่องดนตรี อุปกรณ์ดนตรี ไปสร้างห้องเรียนดนตรีให้โรงเรียนที่มีครูดนตรีแต่ไม่มีอุปกรณ์ดนตรีในการใช้สอนเด็ก
@@ -221,7 +221,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage7} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรม recycle run
+                      กิจกรรม recycle run
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมจัดวิ่งระดมทุนค่าจัดการ บริหารงานศูนย์แบ่งต่อ และค่าจัดส่งวัสดุอุปกรณ์ต่างๆให้นักเรียนยากจน โดยถ้วยรางวัลและเหรียญรางวัลจะใช้เป็นวัสดุรีไซเคิลทั้งมดเพื่อแสดงให้เห็นการนำของกลับมาใช้ใหม่
@@ -239,7 +239,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage8} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรม mirror chance talent
+                      กิจกรรม mirror chance talent
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมจัดประกวดความสามารถเด็กพิการเพื่อสร้างกำลังใจและเปิดโอกาสให้เด็กๆได้มีโอกาสได้แสดงออก
@@ -257,7 +257,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage9} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมฝากยิ้มกลับบ้าน
+                      กิจกรรมฝากยิ้มกลับบ้าน
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมที่นำตุ๊กตาไปแจกให้พนักงานโรงงานเพื่อนำกลับไปฝากลูกหลานได้ มีข้อม้ต้องกลับไปยิ้มให้ครอบครัว 1 ครั้ง เป็นกิจกรรมที่ต้องการให้ตระหนักเรื่องอย่าลืมพูดคุยและยิ้มให้ครอบครัว เพื่อลดอัตราความรุนแรงในครอบครัวในอนาคต
@@ -275,7 +275,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage10} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมตาต่อตา
+                      กิจกรรมตาต่อตา
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมที่ไปแจกแว่นสายตาให้ผู้สูงอายุในชุมชน
@@ -293,7 +293,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage11} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />ธนาคารโอกาส
+                      ธนาคารโอกาส
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมที่ร่วมกับทาง กสศ ในการสร้างโอกาสด้านการศึกษาให้เด็กๆ ทั้งการส่งอุปกรณ์ ประสานงานร.ร.ต่างๆให้นักเรียนได้เข้าเรียน  
@@ -311,7 +311,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage12} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />กิจกรรมถนนครูเดิน
+                      กิจกรรมถนนครูเดิน
                     </Card.Title>
                     <Card.Text>
                       กิจกรรมที่ผลักดันขับเคลื่อนเชิงนโยบายด้านการศึกษาเรื่องการจัดสรรงบประมาณที่ขาดแคลนใน ร.ร.ขนาดเล็ก ร.ร.พื้นที่สูง และห่างไกล
@@ -329,7 +329,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage13} />
                   <Card.Body>
                     <Card.Title>
-                      <FaHeart className="mr-2" />ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ
+                      ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ
 
                     </Card.Title>
                   </Card.Body>
@@ -344,8 +344,7 @@ function ActivityMap() {
             animate={{ opacity: 1 }} 
             transition={{ duration: 1 }}
           >
-            <h3 className="text-center mt-5">กิจกรรมอื่นๆ</h3>
-            <p className="text-center mb-4">เรายังมีกิจกรรมที่หลากหลายเพื่อลดช่องว่างทางสังคม...</p>
+
           </motion.div>
         </div>
         </div>

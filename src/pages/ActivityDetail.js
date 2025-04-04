@@ -14,7 +14,13 @@ function ActivityDetails() {
     return (
         <div className="container">
             <h2>{activities.length > 0 ? activities[0].name : "กิจกรรม"}</h2>
-            <button className="btn btn-secondary mb-3" onClick={() => navigate(-1)}>🔙 กลับ</button>
+
+            <button className="btn btn-secondary mb-3"            
+                style={{ 
+                    backgroundColor: "#D6E6FF", // ✅ สีพื้นหลังฟ้าอ่อน
+                    color: "#004085" // ✅ ปรับสีตัวอักษรให้เข้ากับพื้นหลัง
+                    }} 
+                onClick={() => navigate(-1)}>⬅️ย้อนกลับ</button>
             <Row className="g-4">
                 {activities.map((activity, index) => (
                     <Col key={index} md={4}>
