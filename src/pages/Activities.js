@@ -73,8 +73,14 @@ function Activities() {
                                             <ListGroup.Item
                                                 action
                                                 onClick={() => handleActivityClick(name, groupedActivities[category][name])}
-                                                className="shadow-sm p-3 mb-2 bg-white rounded"
-                                                style={{ cursor: "pointer" }}
+                                                className="shadow-sm p-3 mb-2 rounded"
+                                                style={{ 
+                                                    cursor: "pointer",
+                                                    borderRadius: "8px", 
+                                                    fontWeight: "bold",
+                                                    backgroundColor: "#D6E6FF", // ✅ สีพื้นหลังฟ้าอ่อน
+                                                    color: "#004085" // ✅ ปรับสีตัวอักษรให้เข้ากับพื้นหลัง
+                                                }}
                                             >
                                                 {name}
                                             </ListGroup.Item>
