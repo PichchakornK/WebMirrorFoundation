@@ -9,18 +9,18 @@ import { FaHeart, FaRegHandshake } from 'react-icons/fa'; // ใช้ไอค�
 
 // Import รูปภาพ
 import centerImage1 from '../pics/แบ่งต่อ1.jpg'; 
-import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
-import centerImage3 from '../pics/แบ่งต่อ3.jpg'; 
-import centerImage4 from '../pics/แบ่งต่อ4.jpg'; 
-import centerImage5 from '../pics/แบ่งต่อ5.jpg'; 
-import centerImage6 from '../pics/แบ่งต่อ6.jpg'; 
-import centerImage7 from '../pics/แบ่งต่อ14.jpg'; 
-import centerImage8 from '../pics/แบ่งต่อ14.jpg'; 
-import centerImage9 from '../pics/แบ่งต่อ9.jpg'; 
-import centerImage10 from '../pics/แบ่งต่อ10.jpg'; 
-import centerImage11 from '../pics/แบ่งต่อ11.jpg'; 
-import centerImage12 from '../pics/แบ่งต่อ12.jpg';
-import centerImage13 from '../pics/แบ่งต่อ13.jpg'; 
+ import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
+ import centerImage3 from '../pics/แบ่งต่อ3.jpg'; 
+ import centerImage4 from '../pics/แบ่งต่อ4.jpg'; 
+ import centerImage5 from '../pics/แบ่งต่อ14.jpg'; 
+ import centerImage6 from '../pics/แบ่งต่อ6.jpg'; 
+ import centerImage7 from '../pics/แบ่งต่อ14.jpg'; 
+ import centerImage8 from '../pics/แบ่งต่อ14.jpg'; 
+ import centerImage9 from '../pics/แบ่งต่อ9.jpg'; 
+ import centerImage10 from '../pics/แบ่งต่อ10.jpg'; 
+ import centerImage11 from '../pics/แบ่งต่อ11.jpg'; 
+ import centerImage12 from '../pics/แบ่งต่อ12.jpg'; 
+ import centerImage13 from '../pics/แบ่งต่อ13.jpg'; 
 
 const mapContainerStyle = { width: "100%", height: "500px" };
 const defaultCenter = { lat: 13.736717, lng: 100.523186 }; // กรุงเทพฯ
@@ -236,7 +236,7 @@ function ActivityMap() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage3} />
+                  <Card.Img variant="top" src={centerImage8} />
                   <Card.Body>
                     <Card.Title>
                       <FaHeart className="mr-2" />กิจกรรม mirror chance talent
@@ -254,7 +254,7 @@ function ActivityMap() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage3} />
+                  <Card.Img variant="top" src={centerImage9} />
                   <Card.Body>
                     <Card.Title>
                       <FaHeart className="mr-2" />กิจกรรมฝากยิ้มกลับบ้าน
@@ -272,7 +272,7 @@ function ActivityMap() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage3} />
+                  <Card.Img variant="top" src={centerImage10} />
                   <Card.Body>
                     <Card.Title>
                       <FaHeart className="mr-2" />กิจกรรมตาต่อตา
@@ -290,7 +290,7 @@ function ActivityMap() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage3} />
+                  <Card.Img variant="top" src={centerImage11} />
                   <Card.Body>
                     <Card.Title>
                       <FaHeart className="mr-2" />ธนาคารโอกาส
@@ -308,7 +308,7 @@ function ActivityMap() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage3} />
+                  <Card.Img variant="top" src={centerImage12} />
                   <Card.Body>
                     <Card.Title>
                       <FaHeart className="mr-2" />กิจกรรมถนนครูเดิน
@@ -316,6 +316,21 @@ function ActivityMap() {
                     <Card.Text>
                       กิจกรรมที่ผลักดันขับเคลื่อนเชิงนโยบายด้านการศึกษาเรื่องการจัดสรรงบประมาณที่ขาดแคลนใน ร.ร.ขนาดเล็ก ร.ร.พื้นที่สูง และห่างไกล
                     </Card.Text>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+            <Col md={4} className="mb-4">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Card className="shadow-lg border-0">
+                  <Card.Img variant="top" src={centerImage13} />
+                  <Card.Body>
+                    <Card.Title>
+                      <FaHeart className="mr-2" />ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               </motion.div>
