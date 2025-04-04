@@ -1,7 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { useLocation, useNavigate } from "react-router-dom";
+import ActivityCard from "./ActivityCard";
+import '../Activities.css';
 
 function ActivityDetails() {
     const location = useLocation();
@@ -15,13 +17,7 @@ function ActivityDetails() {
             <Row className="g-4">
                 {activities.map((activity, index) => (
                     <Col key={index} md={4}>
-                        <Card>
-                            <Card.Img variant="top" src={activity.image} alt={activity.name} />
-                            <Card.Body>
-                                <Card.Title>{activity.name}</Card.Title>
-                                <Card.Text>{activity.description}</Card.Text>
-                            </Card.Body>
-                        </Card>
+                        <ActivityCard name={activity.name} description={activity.description} image={activity.image} />
                     </Col>
                 ))}
             </Row>
