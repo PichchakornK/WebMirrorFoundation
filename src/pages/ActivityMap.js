@@ -5,31 +5,28 @@ import { collection, getDocs } from "firebase/firestore";
 import background from "../pics/background.jpg";
 import { Row, Col, Card } from 'react-bootstrap';
 import { motion } from 'framer-motion'; // นำเข้า Framer Motion สำหรับการเคลื่อนไหว
-import { FaHeart, FaRegHandshake } from 'react-icons/fa'; // ใช้ไอคอนจาก React Icons
 
-// Import รูปภาพ
 import centerImage1 from '../pics/แบ่งต่อ1.jpg'; 
- import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
- import centerImage3 from '../pics/แบ่งต่อ3.jpg'; 
- import centerImage4 from '../pics/แบ่งต่อ4.jpg'; 
- import centerImage5 from '../pics/แบ่งต่อ14.jpg'; 
- import centerImage6 from '../pics/แบ่งต่อ6.jpg'; 
- import centerImage7 from '../pics/แบ่งต่อ14.jpg'; 
- import centerImage8 from '../pics/แบ่งต่อ14.jpg'; 
- import centerImage9 from '../pics/แบ่งต่อ9.jpg'; 
- import centerImage10 from '../pics/แบ่งต่อ10.jpg'; 
- import centerImage11 from '../pics/แบ่งต่อ11.jpg'; 
- import centerImage12 from '../pics/แบ่งต่อ12.jpg'; 
- import centerImage13 from '../pics/แบ่งต่อ13.jpg'; 
+import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
+import centerImage3 from '../pics/แบ่งต่อ3.jpg'; 
+import centerImage4 from '../pics/แบ่งต่อ4.jpg'; 
+import centerImage5 from '../pics/แบ่งต่อ14.jpg'; 
+import centerImage6 from '../pics/แบ่งต่อ6.jpg'; 
+import centerImage7 from '../pics/แบ่งต่อ14.jpg'; 
+import centerImage8 from '../pics/แบ่งต่อ14.jpg'; 
+import centerImage9 from '../pics/แบ่งต่อ9.jpg'; 
+import centerImage10 from '../pics/แบ่งต่อ10.jpg'; 
+import centerImage11 from '../pics/แบ่งต่อ11.jpg'; 
+import centerImage12 from '../pics/แบ่งต่อ12.jpg'; 
+import centerImage13 from '../pics/แบ่งต่อ13.jpg'; 
 
 const mapContainerStyle = { width: "100%", height: "500px" };
 const defaultCenter = { lat: 13.736717, lng: 100.523186 }; // กรุงเทพฯ
 
-
-
 function ActivityMap() {
   const [activities, setActivities] = useState([]);
   const [selectedActivity, setSelectedActivity] = useState(null);
+  const [zoom, setZoom] = useState(6); // Added zoom state
 
   useEffect(() => {
     const fetchActivities = async () => {
@@ -42,13 +39,20 @@ function ActivityMap() {
   }, []);
 
   const parseDate = (date) => {
-    // หาก date เป็น Timestamp ของ Firestore ให้แปลงเป็น Date
     if (date && date.seconds) {
       return new Date(date.seconds * 1000).toLocaleDateString();
     }
-    // หาก date เป็นสตริงหรือวันที่ที่สามารถแปลงได้
     const parsedDate = new Date(date);
     return isNaN(parsedDate) ? "ไม่ทราบวันที่" : parsedDate.toLocaleDateString();
+  };
+
+  const handleMapLoad = (map) => {
+    if (window.google) {
+      // You can access `google` here safely
+      map.addListener("zoom_changed", () => {
+        setZoom(map.getZoom());
+      });
+    }
   };
 
   return ( 
@@ -57,14 +61,25 @@ function ActivityMap() {
 
       <h2 style={{margin: "5%", textAlign: "center"}}>กิจกรรมทั้งหมดบนแผนที่</h2>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-        <GoogleMap mapContainerStyle={mapContainerStyle} center={defaultCenter} zoom={6}>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle} 
+          center={defaultCenter} 
+          zoom={zoom} // Use the zoom state here
+          onLoad={handleMapLoad} // Ensures Google Maps is loaded before accessing it
+        >
           {activities.map((act, index) => (
-            <Marker 
-              key={index} 
-              position={{ lat: parseFloat(act.latitude), lng: parseFloat(act.longtitude) }} 
-              title={act.name}
-              onClick={() => setSelectedActivity(act)}
-            />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.1, duration: 1 }} // Animation effect
+            >
+              <Marker 
+                position={{ lat: parseFloat(act.latitude), lng: parseFloat(act.longtitude) }} 
+                title={act.name}
+                onClick={() => setSelectedActivity(act)}
+              />
+            </motion.div>
           ))}
 
           {selectedActivity && (
@@ -86,16 +101,14 @@ function ActivityMap() {
                     src={selectedActivity.imgURL} 
                     alt={selectedActivity.name} 
                     style={{ width: "150px", height: "100px", objectFit: "cover", borderRadius: "8px" }} 
-                  />)}
-
+                  />
+                )}
               </div>
             </InfoWindow>
           )}
-
         </GoogleMap>
       </LoadScript>
-
-     
+      
         <div className="container mt-4">
     
           {/* Grid Layout: แสดงรูปภาพแบบตาราง */}
@@ -111,7 +124,7 @@ function ActivityMap() {
                   <Card.Img variant="top" src={centerImage1} />
                   <Card.Body>
                     <Card.Title>
-                      กิจกรรมกวักน้องมาเรียน
+                    กิจกรรมกวักน้องมาเรียน
                     </Card.Title>
                     <Card.Text>
                     กิจกรรมที่มีความมุ่งหมายที่จะช่วยลดเด็กเสี่ยงหลุดจากระบบ และดึงเด็กที่หลุดจากระบบกลับมาเรียนในระบบการศึกษาเพื่อโอกาสของอนาคตเด็กให้ได้
