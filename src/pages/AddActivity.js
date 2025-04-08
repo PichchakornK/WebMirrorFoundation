@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { Form, Button, Alert, Container, Card } from "react-bootstrap";
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 
+
 function AddActivity() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

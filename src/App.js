@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, Link, NavLink } from "react-router-dom";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav,  } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './pics/logo.jpg';
 import Contact from './pages/Contact.js';
@@ -9,32 +9,32 @@ import ActivityMap from "./pages/ActivityMap.js";
 import Activities from "./pages/Activities.js";
 import ActivityDetail from "./pages/ActivityDetail.js";
 import './app2.css'
+// import "./home.css"
+
 
 function App() {
   return (
     <div>
-      <Navbar bg="dark" variant="dark" >
-        <Container>
-          {/* โลโก้ */}
+      <Navbar bg="dark" variant="dark" className="py-3" style={{ fontSize: '1.2rem' }} fixed="top">
+        <div className="w-100 d-flex align-items-center justify-content-between px-4">
           <Navbar.Brand as={Link} to="/activity-map">
-            <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '10px' }} />
+            <img src={logo} alt="Logo" style={{ height: '60px', marginLeft: '50px',  }} />
           </Navbar.Brand>
           
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            {/* จัดเมนูให้อยู่ตรงกลาง */}
-            <Nav className="mx-auto"> {/* ใช้ mx-auto เพื่อจัดให้อยู่กลาง */}
+          <Navbar.Collapse id="basic-navbar-nav" >
+            <Nav className="mx-auto"> 
               <NavLink to="/activity-map" className="nav-link-custom mx-3" activeClassName="active">หน้าแรก</NavLink>
               <NavLink to="/activities" className="nav-link-custom mx-3" activeClassName="active">กิจกรรม</NavLink>
               <NavLink to="/contact" className="nav-link-custom mx-3" activeClassName="active">ติดต่อเรา</NavLink>
               <NavLink to="/add-activity" className="nav-link-custom mx-3" activeClassName="active">เพิ่มกิจกรรม</NavLink>
             </Nav>
           </Navbar.Collapse>
-        </Container>
+        </div>
       </Navbar>
 
-      <div className="App">
-        <div className="container mt-4">
+      <div className="App" style={{ marginTop: '100px' }}>
+        <div className="mt-4 text-center justify-content-center">
           <Routes>
             <Route path="/" element={<ActivityMap />} /> {/* เพิ่ม path="/" สำหรับหน้าแรก */}
             <Route path="/activity-map" element={<ActivityMap />} />

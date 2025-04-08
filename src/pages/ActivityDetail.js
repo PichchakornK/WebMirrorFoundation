@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ActivityCard from "./ActivityCard";
 import '../Activities.css';
 
+
 function ActivityDetails() {
     const location = useLocation();
     const navigate = useNavigate();
