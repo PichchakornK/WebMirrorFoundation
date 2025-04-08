@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Col, Accordion, ListGroup } from "react-bootstrap";
+import { Accordion, ListGroup } from "react-bootstrap";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";

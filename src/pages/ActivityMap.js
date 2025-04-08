@@ -53,20 +53,24 @@ function ActivityMap() {
     iconAnchor: [16, 32], // จุดที่ไอคอนจะแสดง
     popupAnchor: [0, -32] // จุดที่ Popup จะแสดงเมื่อคลิก
   });
-  
 
-  return (
-    <div>
-      <motion.img
-        src={background}
-        alt="background"
+
+  return ( 
+    <div className="text-center" style={{width:"100vw", padding: 0, margin: 0}}>
+    <div className="justify-content-center">
+      <motion.img 
+        src={background} 
+        alt="background" 
+        class="full-screen-image"
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 1.1 }} 
+        animate={{ opacity: 1, scale: 1 }} 
+        transition={{ duration: 1.5, ease: "easeOut" }} 
       />
+      </div>
 
-      <h2 style={{ margin: "5%", textAlign: "center" }}>กิจกรรมทั้งหมดบนแผนที่</h2>
+      <h1 className="text-center my-5">กิจกรรมทั้งหมดบนแผนที่</h1>
+      <div className="d-flex justify-content-center my-5"></div>
       
       <MapContainer center={defaultCenter} zoom={6} style={{ width: "100%", height: "500px" }}>
         <TileLayer
@@ -129,20 +133,19 @@ function ActivityMap() {
           );
         })}
       </MapContainer>
-      
         <div className="container mt-4">
     
           {/* Grid Layout: แสดงรูปภาพแบบตาราง */}
     
           <h3 className="text-center mb-6" style={{ margin: "5%"}}>กิจกรรมของศูนย์แบ่งต่อ</h3>
           <Row>
-            <Col md={4} className="mb-4">
+            <Col md={4} className="mb-4 ">
               <motion.div 
                 whileHover={{ scale: 1.05 }} // ทำให้การ์ดขยายขนาดเมื่อ hover
                 whileTap={{ scale: 0.95 }} // ลดขนาดเมื่อคลิก
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage1} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage1} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}/>
                   <Card.Body>
                     <Card.Title>
                     กิจกรรมกวักน้องมาเรียน
@@ -160,8 +163,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage2} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage2} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมพ้นวิกฤติ
@@ -179,8 +182,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage3} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage3} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมแบ่งต่อเรนเจอร์
@@ -197,8 +200,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage4} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage4} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมกล่องช่วยหมอ
@@ -215,8 +218,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage5} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage5} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมต้นปันใจ
@@ -233,8 +236,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage6} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage6} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมห้องดนตรีแบ่งต่อ
@@ -251,8 +254,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage7} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage7} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรม recycle run
@@ -269,8 +272,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage8} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage8} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรม mirror chance talent
@@ -287,8 +290,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage9} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage9} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมฝากยิ้มกลับบ้าน
@@ -305,8 +308,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage10} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage10} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมตาต่อตา
@@ -323,8 +326,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage11} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage11} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       ธนาคารโอกาส
@@ -341,8 +344,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage12} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage12} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       กิจกรรมถนนครูเดิน
@@ -359,8 +362,8 @@ function ActivityMap() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Card className="shadow-lg border-0">
-                  <Card.Img variant="top" src={centerImage13} />
+                <Card className="shadow-lg border-0" style={{ borderRadius: '20px' }}>
+                  <Card.Img variant="top" src={centerImage13} style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }} />
                   <Card.Body>
                     <Card.Title>
                       ส่งของบริจาคให้หน่วยงานและเคสขอความช่วยเหลือทั่วประเทศ
@@ -372,7 +375,6 @@ function ActivityMap() {
             </Col>
           </Row>
     
-          {/* เพิ่มแอนิเมชันให้ข้อความเมื่อเลื่อนลง */}
           <motion.div 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
