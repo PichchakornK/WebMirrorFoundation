@@ -1,7 +1,7 @@
 
 export const connectorConfig = {
   connector: 'default',
-  service: 'donation-center',
+  service: 'webmirrorfoundation',
   location: 'us-central1'
 };
 

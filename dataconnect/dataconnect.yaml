@@ -1,5 +1,5 @@
 specVersion: "v1"
-serviceId: "donation-center"
+serviceId: "webmirrorfoundation"
 location: "us-central1"
 schema:
   source: "./schema"
@@ -7,6 +7,6 @@ schema:
     postgresql:
       database: "fdcdb"
       cloudSql:
-        instanceId: "donation-center-fdc"
+        instanceId: "webmirrorfoundation-fdc"
       # schemaValidation: "COMPATIBLE"
 connectorDirs: ["./connector"]
