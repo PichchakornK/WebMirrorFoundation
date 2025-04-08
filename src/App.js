@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes, Link, NavLink } from "react-router-dom";
 import { Navbar, Nav,  } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './pics/logo.jpg';
+import logo from './pics/logo.png';
 import Contact from './pages/Contact.js';
 import AddActivity from "./pages/AddActivity.js";
 import ActivityMap from "./pages/ActivityMap.js";
@@ -15,7 +15,7 @@ import './app2.css'
 function App() {
   return (
     <div>
-      <Navbar bg="dark" variant="dark" className="py-3" style={{ fontSize: '1.2rem' }} fixed="top">
+      <Navbar variant="dark" className="py-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', fontSize: '1.2rem' }} fixed="top">
         <div className="w-100 d-flex align-items-center justify-content-between px-4">
           <Navbar.Brand as={Link} to="/activity-map">
             <img src={logo} alt="Logo" style={{ height: '60px', marginLeft: '50px',  }} />

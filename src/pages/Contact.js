@@ -9,7 +9,7 @@ const mapContainerStyle = { width: "100%", height: "400px", borderRadius: "10px"
 const center = { lat: 13.868733951594397, lng: 100.57929018380483 };
 
 function Contact() {
-  const [hover, setHover] = useState(false);
+  const [setHover] = useState(false);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#fff9db"; // ตั้งค่าพื้นหลังสีเหลือง

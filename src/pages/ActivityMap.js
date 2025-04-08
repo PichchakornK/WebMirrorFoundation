@@ -33,9 +33,10 @@ function ActivityMap() {
     const fetchActivities = async () => {
       const querySnapshot = await getDocs(collection(db, "activities"));
       const activitiesData = querySnapshot.docs.map((doc) => doc.data());
+      console.log(activitiesData); // ตรวจสอบข้อมูลที่ดึงมา
       setActivities(activitiesData);
     };
-
+  
     fetchActivities();
   }, []);
 
@@ -48,42 +49,43 @@ function ActivityMap() {
   };
 
   const customIcon = new L.Icon({
-    iconUrl: markerIcon, // ใช้ path ที่ถูกต้องสำหรับรูปไอคอน
-    iconSize: [15, 20], // ขนาดของไอคอน
-    iconAnchor: [16, 32], // จุดที่ไอคอนจะแสดง
-    popupAnchor: [0, -32] // จุดที่ Popup จะแสดงเมื่อคลิก
+    iconUrl: markerIcon, 
+    iconSize: [15, 20],
+    iconAnchor: [16, 32], 
+    popupAnchor: [0, -32] 
   });
 
 
-  return ( 
-    <div className="text-center" style={{width:"100vw", padding: 0, margin: 0}}>
+return ( 
+  <div className="text-center" style={{width:"100vw", padding: 0, margin: 0}}>
     <div className="justify-content-center">
       <motion.img 
         src={background} 
         alt="background" 
-        class="full-screen-image"
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        className="full-screen-image"
+        style={{ width: "100%", height: "100%", objectFit: "cover", marginTop: "-100px" }}
         initial={{ opacity: 0, scale: 1.1 }} 
         animate={{ opacity: 1, scale: 1 }} 
         transition={{ duration: 1.5, ease: "easeOut" }} 
       />
-      </div>
+    </div>
 
-      <h1 className="text-center my-5">กิจกรรมทั้งหมดบนแผนที่</h1>
-      <div className="d-flex justify-content-center my-5"></div>
-      
-      <MapContainer center={defaultCenter} zoom={6} style={{ width: "100%", height: "500px" }}>
+    <h1 className="text-center my-5">กิจกรรมทั้งหมดบนแผนที่</h1>
+    <div className="d-flex justify-content-center my-5">
+      <MapContainer center={defaultCenter} zoom={10} style={{ width: "60%", height: "800px" }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {activities.map((act, index) => {
           const latitude = parseFloat(act.latitude);
           const longitude = parseFloat(act.longtitude);
+          
+          console.log('Latitude:', latitude, 'Longitude:', longitude); // ตรวจสอบค่าพิกัด
 
           // ตรวจสอบค่าของ latitude และ longitude
           if (isNaN(latitude) || isNaN(longitude)) {
             console.warn(`พิกัดไม่ถูกต้องสำหรับกิจกรรม: ${act.name}`, act.latitude, act.longtitude);
-            return null; // ข้ามการแสดง marker นี้ไปถ้าพิกัดไม่ถูกต้อง
+            return null;
           }
 
           return (
@@ -93,51 +95,50 @@ function ActivityMap() {
               animate={{ opacity: 1 }}
               transition={{ delay: index * 0.1, duration: 1 }}
             >
-              <Marker
-  position={{ lat: latitude, lng: longitude }}
-  icon={customIcon} // เพิ่มไอคอนที่กำหนดไว้
-  eventHandlers={{
-    click: () => setSelectedActivity(act),
-  }}
->
-  {selectedActivity && selectedActivity.name === act.name && (
-    <Popup>
-      <div>
-        <h3>{act.name}</h3>
-        <p>{act.description}</p>
-        <p>
-          <strong>วันที่:</strong> {parseDate(act.date)}
-        </p>
-        <p>
-          <strong>ที่อยู่:</strong> {act.location}
-        </p>
+            <Marker
+              position={{ lat: latitude, lng: longitude }}
+              icon={customIcon} // เพิ่มไอคอนที่กำหนดไว้
+              eventHandlers={{
+                click: () => setSelectedActivity(act),
+              }}
+            >
+            {selectedActivity && selectedActivity.name === act.name && (
+              <Popup>
+                <div>
+                  <h3>{act.name}</h3>
+                  <p>{act.description}</p>
+                  <p>
+                    <strong>วันที่:</strong> {parseDate(act.date)}
+                  </p>
+                  <p>
+                    <strong>ที่อยู่:</strong> {act.location}
+                  </p>
 
-        {act.imgURL && (
-          <img
-            src={act.imgURL}
-            alt={act.name}
-            style={{
-              width: "150px",
-              height: "100px",
-              objectFit: "cover",
-              borderRadius: "8px",
-            }}
-          />
-        )}
-      </div>
-    </Popup>
-  )}
-</Marker>
-
+                  {act.imgURL && (
+                    <img
+                      src={act.imgURL}
+                      alt={act.name}
+                      style={{
+                        width: "150px",
+                        height: "100px",
+                        objectFit: "cover",
+                        borderRadius: "8px",
+                      }}
+                    />
+                  )}
+                </div>
+              </Popup>
+            )}
+            </Marker>
             </motion.div>
           );
         })}
       </MapContainer>
-        <div className="container mt-4">
-    
-          {/* Grid Layout: แสดงรูปภาพแบบตาราง */}
-    
-          <h3 className="text-center mb-6" style={{ margin: "5%"}}>กิจกรรมของศูนย์แบ่งต่อ</h3>
+      </div>
+      
+      
+      <div className="container mt-4">  
+        <h3 className="text-center mb-6" style={{ margin: "5%"}}>กิจกรรมของศูนย์แบ่งต่อ</h3>
           <Row>
             <Col md={4} className="mb-4 ">
               <motion.div 
@@ -380,10 +381,9 @@ function ActivityMap() {
             animate={{ opacity: 1 }} 
             transition={{ duration: 1 }}
           >
-
           </motion.div>
-        </div>
-        </div>
+      </div>
+    </div>
         
   );
 }

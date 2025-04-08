@@ -125,7 +125,7 @@ function AddActivity() {
               </Form.Group>
               <Form.Group>
                 <Form.Label>ลองจิจูด (Longitude)</Form.Label>
-                <Form.Control type="text" name="longitude" value={activity.longitude} onChange={handleChange} required />
+                <Form.Control type="text" name="longitude" value={activity.longtitude} onChange={handleChange} required />
               </Form.Group>
               <Form.Group>
                 <Form.Label>ลิงก์รูปภาพ</Form.Label>
