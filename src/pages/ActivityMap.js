@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { db } from "../firebase"; // Firebase import
 import { collection, getDocs } from "firebase/firestore";
-import background from "../pics/background.jpg";
+import { motion } from "framer-motion"; // นำเข้า Framer Motion สำหรับการเคลื่อนไหว
 import { Row, Col, Card } from 'react-bootstrap';
-import { motion } from 'framer-motion'; // นำเข้า Framer Motion สำหรับการเคลื่อนไหว
+import 'leaflet/dist/leaflet.css'; // ต้องนำเข้าไฟล์ CSS ของ leaflet
+import L from 'leaflet'; // เพิ่มการนำเข้า L สำหรับการกำหนด Icon
+import background from "../pics/background.jpg"; // Make sure this path is correct
+import markerIcon from "../pics/markerIcon.png"
 
 import centerImage1 from '../pics/แบ่งต่อ1.jpg'; 
 import centerImage2 from '../pics/แบ่งต่อ2.jpg'; 
@@ -20,18 +23,16 @@ import centerImage11 from '../pics/แบ่งต่อ11.jpg';
 import centerImage12 from '../pics/แบ่งต่อ12.jpg'; 
 import centerImage13 from '../pics/แบ่งต่อ13.jpg'; 
 
-const mapContainerStyle = { width: "100%", height: "500px" };
 const defaultCenter = { lat: 13.736717, lng: 100.523186 }; // กรุงเทพฯ
 
 function ActivityMap() {
   const [activities, setActivities] = useState([]);
   const [selectedActivity, setSelectedActivity] = useState(null);
-  const [zoom, setZoom] = useState(6); // Added zoom state
 
   useEffect(() => {
     const fetchActivities = async () => {
       const querySnapshot = await getDocs(collection(db, "activities"));
-      const activitiesData = querySnapshot.docs.map(doc => doc.data());
+      const activitiesData = querySnapshot.docs.map((doc) => doc.data());
       setActivities(activitiesData);
     };
 
@@ -46,75 +47,88 @@ function ActivityMap() {
     return isNaN(parsedDate) ? "ไม่ทราบวันที่" : parsedDate.toLocaleDateString();
   };
 
-  const handleMapLoad = (map) => {
-    if (window.google) {
-      // You can access `google` here safely
-      map.addListener("zoom_changed", () => {
-        setZoom(map.getZoom());
-      });
-    }
-  };
+  const customIcon = new L.Icon({
+    iconUrl: markerIcon, // ใช้ path ที่ถูกต้องสำหรับรูปไอคอน
+    iconSize: [15, 20], // ขนาดของไอคอน
+    iconAnchor: [16, 32], // จุดที่ไอคอนจะแสดง
+    popupAnchor: [0, -32] // จุดที่ Popup จะแสดงเมื่อคลิก
+  });
+  
 
-  return ( 
+  return (
     <div>
-      <motion.img 
-        src={background} 
-        alt="background" 
+      <motion.img
+        src={background}
+        alt="background"
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        initial={{ opacity: 0, scale: 1.1 }} 
-        animate={{ opacity: 1, scale: 1 }} 
-        transition={{ duration: 1.5, ease: "easeOut" }} 
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       />
 
-      <h2 style={{margin: "5%", textAlign: "center"}}>กิจกรรมทั้งหมดบนแผนที่</h2>
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle} 
-          center={defaultCenter} 
-          zoom={zoom} // Use the zoom state here
-          onLoad={handleMapLoad} // Ensures Google Maps is loaded before accessing it
-        >
-          {activities.map((act, index) => (
+      <h2 style={{ margin: "5%", textAlign: "center" }}>กิจกรรมทั้งหมดบนแผนที่</h2>
+      
+      <MapContainer center={defaultCenter} zoom={6} style={{ width: "100%", height: "500px" }}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {activities.map((act, index) => {
+          const latitude = parseFloat(act.latitude);
+          const longitude = parseFloat(act.longtitude);
+
+          // ตรวจสอบค่าของ latitude และ longitude
+          if (isNaN(latitude) || isNaN(longitude)) {
+            console.warn(`พิกัดไม่ถูกต้องสำหรับกิจกรรม: ${act.name}`, act.latitude, act.longtitude);
+            return null; // ข้ามการแสดง marker นี้ไปถ้าพิกัดไม่ถูกต้อง
+          }
+
+          return (
             <motion.div
               key={index}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: index * 0.1, duration: 1 }} // Animation effect
+              transition={{ delay: index * 0.1, duration: 1 }}
             >
-              <Marker 
-                position={{ lat: parseFloat(act.latitude), lng: parseFloat(act.longtitude) }} 
-                title={act.name}
-                onClick={() => setSelectedActivity(act)}
-              />
+              <Marker
+  position={{ lat: latitude, lng: longitude }}
+  icon={customIcon} // เพิ่มไอคอนที่กำหนดไว้
+  eventHandlers={{
+    click: () => setSelectedActivity(act),
+  }}
+>
+  {selectedActivity && selectedActivity.name === act.name && (
+    <Popup>
+      <div>
+        <h3>{act.name}</h3>
+        <p>{act.description}</p>
+        <p>
+          <strong>วันที่:</strong> {parseDate(act.date)}
+        </p>
+        <p>
+          <strong>ที่อยู่:</strong> {act.location}
+        </p>
+
+        {act.imgURL && (
+          <img
+            src={act.imgURL}
+            alt={act.name}
+            style={{
+              width: "150px",
+              height: "100px",
+              objectFit: "cover",
+              borderRadius: "8px",
+            }}
+          />
+        )}
+      </div>
+    </Popup>
+  )}
+</Marker>
+
             </motion.div>
-          ))}
-
-          {selectedActivity && (
-            <InfoWindow
-              position={{
-                lat: parseFloat(selectedActivity.latitude),
-                lng: parseFloat(selectedActivity.longtitude),
-              }}
-              onCloseClick={() => setSelectedActivity(null)}
-            >
-              <div>
-                <h3>{selectedActivity.name}</h3>
-                <p>{selectedActivity.description}</p>
-                <p><strong>วันที่:</strong> {parseDate(selectedActivity.date)}</p>
-                <p><strong>ที่อยู่:</strong> {selectedActivity.location}</p>
-
-                {selectedActivity.imgURL && (
-                  <img 
-                    src={selectedActivity.imgURL} 
-                    alt={selectedActivity.name} 
-                    style={{ width: "150px", height: "100px", objectFit: "cover", borderRadius: "8px" }} 
-                  />
-                )}
-              </div>
-            </InfoWindow>
-          )}
-        </GoogleMap>
-      </LoadScript>
+          );
+        })}
+      </MapContainer>
       
         <div className="container mt-4">
     
