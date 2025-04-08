@@ -57,7 +57,14 @@ function ActivityMap() {
 
   return ( 
     <div>
-      <img src={background} alt="background" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      <motion.img 
+        src={background} 
+        alt="background" 
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        initial={{ opacity: 0, scale: 1.1 }} 
+        animate={{ opacity: 1, scale: 1 }} 
+        transition={{ duration: 1.5, ease: "easeOut" }} 
+      />
 
       <h2 style={{margin: "5%", textAlign: "center"}}>กิจกรรมทั้งหมดบนแผนที่</h2>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>

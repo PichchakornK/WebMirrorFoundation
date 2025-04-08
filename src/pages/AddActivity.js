@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { db } from "../firebase";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Container, Card } from "react-bootstrap";
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 
 function AddActivity() {
@@ -19,11 +19,10 @@ function AddActivity() {
     imgURL: "",
   });
 
-  // ใช้ useEffect เพื่อตรวจสอบสถานะการล็อกอิน
   useEffect(() => {
     const token = localStorage.getItem("userToken");
     if (token) {
-      setIsAdmin(true); // หากมี token ให้ผู้ใช้เป็น admin
+      setIsAdmin(true);
     }
   }, []);
 
@@ -41,7 +40,7 @@ function AddActivity() {
 
       if (userSnap.exists() && userSnap.data().role === "admin") {
         setIsAdmin(true);
-        localStorage.setItem("userToken", user.uid); // เก็บ token ใน localStorage
+        localStorage.setItem("userToken", user.uid);
       } else {
         setError("คุณไม่มีสิทธิ์เข้าถึงหน้านี้");
       }
@@ -54,7 +53,7 @@ function AddActivity() {
     const auth = getAuth();
     signOut(auth).then(() => {
       setIsAdmin(false);
-      localStorage.removeItem("userToken"); // ลบข้อมูลการล็อกอิน
+      localStorage.removeItem("userToken");
     }).catch((error) => {
       console.error("Error signing out: ", error);
     });
@@ -81,74 +80,80 @@ function AddActivity() {
   };
 
   return (
-    <div className="container">
-      {!isAdmin ? (
-        <div>
-          <h2>เข้าสู่ระบบ</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleLogin}>
-            <Form.Group className="mb-3">
-              <Form.Label>อีเมล</Form.Label>
-              <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>รหัสผ่าน</Form.Label>
-              <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            </Form.Group>
-            <Button variant="primary" type="submit">เข้าสู่ระบบ</Button>
-          </Form>
-        </div>
-      ) : (
-        <div>
-          <h2>เพิ่มกิจกรรม</h2>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>ชื่อกิจกรรม</Form.Label>
-              <Form.Control type="text" name="name" value={activity.name} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>รายละเอียด</Form.Label>
-              <Form.Control as="textarea" name="description" value={activity.description} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>วันที่</Form.Label>
-              <Form.Control type="date" name="date" value={activity.date} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>ที่อยู่</Form.Label>
-              <Form.Control type="text" name="location" value={activity.location} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>ละติจูด (Latitude)</Form.Label>
-              <Form.Control type="text" name="latitude" value={activity.latitude} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>ลองจิจูด (Longitude)</Form.Label>
-              <Form.Control type="text" name="longitude" value={activity.longitude} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>ลิงก์รูปภาพ</Form.Label>
-              <Form.Control type="text" name="imgURL" value={activity.imgURL} onChange={handleChange} required />
-            </Form.Group>
-            <Button variant="success" type="submit">บันทึกกิจกรรม</Button>
-          </Form>
-        </div>
-      )}
-      {/* ปุ่มออกจากระบบที่มุมขวาล่าง */}
+    <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
+      <Card style={{ width: "100%", maxWidth: "500px", padding: "20px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", borderRadius: "10px" }}>
+        {!isAdmin ? (
+          <div>
+            <h2 className="text-center">เข้าสู่ระบบ</h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleLogin}>
+              <Form.Group className="mb-3">
+                <Form.Label>อีเมล</Form.Label>
+                <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>รหัสผ่าน</Form.Label>
+                <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              </Form.Group>
+              <Button variant="primary" type="submit" className="w-100">เข้าสู่ระบบ</Button>
+            </Form>
+          </div>
+        ) : (
+          <div>
+            <h2 className="text-center">เพิ่มกิจกรรม</h2>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Label>ชื่อกิจกรรม</Form.Label>
+                <Form.Control type="text" name="name" value={activity.name} onChange={handleChange} required />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>รายละเอียด</Form.Label>
+                <Form.Control as="textarea" name="description" value={activity.description} onChange={handleChange} required />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>วันที่</Form.Label>
+                <Form.Control type="date" name="date" value={activity.date} onChange={handleChange} required />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>ที่อยู่</Form.Label>
+                <Form.Control type="text" name="location" value={activity.location} onChange={handleChange} required />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>ละติจูด (Latitude)</Form.Label>
+                <Form.Control type="text" name="latitude" value={activity.latitude} onChange={handleChange} required />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>ลองจิจูด (Longitude)</Form.Label>
+                <Form.Control type="text" name="longitude" value={activity.longitude} onChange={handleChange} required />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>ลิงก์รูปภาพ</Form.Label>
+                <Form.Control type="text" name="imgURL" value={activity.imgURL} onChange={handleChange} required />
+              </Form.Group>
+              <Button variant="success" size="sm" type="submit" className="w-100 mt-3">บันทึกกิจกรรม</Button>
+            </Form>
+          </div>
+        )}
+      </Card>
+
       {isAdmin && (
         <Button
-          variant="secondary"
+          variant="danger"
           onClick={handleLogout}
           style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: "1000",
+            padding: "10px 15px",
+            fontSize: "14px",
+            borderRadius: "5px"
           }}
         >
           ออกจากระบบ
         </Button>
       )}
-    </div>
+    </Container>
   );
 }
 
