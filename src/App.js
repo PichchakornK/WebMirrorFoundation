@@ -18,7 +18,7 @@ function App() {
       <Navbar variant="dark" className="py-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', fontSize: '1.2rem' }} fixed="top">
         <div className="w-100 d-flex align-items-center justify-content-between px-4">
           <Navbar.Brand as={Link} to="/activity-map">
-            <img src={logo} alt="Logo" style={{ height: '60px', marginLeft: '50px',  }} />
+            <img src={logo} alt="Logo" style={{ height: '50px', marginLeft: '50px',  }} />
           </Navbar.Brand>
           
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

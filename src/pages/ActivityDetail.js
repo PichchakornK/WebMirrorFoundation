@@ -16,10 +16,11 @@ function ActivityDetails() {
         <div className="container">
             <h2>{activities.length > 0 ? activities[0].name : "กิจกรรม"}</h2>
 
-            <button className="btn btn-secondary mb-3"            
+            <button className="d-flex justify-content-start mb-3"           
                 style={{ 
-                    backgroundColor: "#D6E6FF", // ✅ สีพื้นหลังฟ้าอ่อน
-                    color: "#004085" // ✅ ปรับสีตัวอักษรให้เข้ากับพื้นหลัง
+                    backgroundColor: "#D6E6FF", 
+                    color: "#004085",
+                    borderRadius: "5px"
                     }} 
                 onClick={() => navigate(-1)}>⬅️ย้อนกลับ</button>
             <Row className="g-4">
