@@ -19,7 +19,7 @@ const icon = new L.Icon({
 });
 
 function Contact() {
-  const [hover, setHover] = useState(false);
+  const [setHover] = useState(false);
 
   useEffect(() => {
     document.body.style.backgroundColor = "#fff9db";
