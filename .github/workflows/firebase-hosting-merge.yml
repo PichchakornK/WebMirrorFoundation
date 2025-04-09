@@ -18,4 +18,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DONATION_CENTER_9576E }}
           channelId: live
           projectId: donation-center-9576e
-
