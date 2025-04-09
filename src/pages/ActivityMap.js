@@ -72,7 +72,7 @@ return (
 
     <h1 className="text-center my-5">กิจกรรมทั้งหมดบนแผนที่</h1>
     <div className="d-flex justify-content-center my-5">
-      <MapContainer center={defaultCenter} zoom={10} style={{ width: "60%", height: "800px" }}>
+      <MapContainer center={defaultCenter} zoom={10} style={{ width: "90%", height: "500px" }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />

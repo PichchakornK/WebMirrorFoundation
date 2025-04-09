@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { motion } from "framer-motion";
 import { FaFacebook, FaYoutube } from "react-icons/fa";
-import "./Contact.css"; // นำเข้า CSS ใหม่
+import "./Contact.css"; 
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet"; // Import leaflet for custom icons
+import markerIcon from "../pics/markerIcon.png"; // Import image
 
-const mapContainerStyle = { width: "100%", height: "400px", borderRadius: "10px", overflow: "hidden" };
-const center = { lat: 13.868733951594397, lng: 100.57929018380483 };
+const defaultCenter = { lat: 13.79112, lng: 100.49678 };
+
+// Use the imported image directly for the marker icon
+const icon = new L.Icon({
+  iconUrl: markerIcon, // Use the imported image here
+  iconSize: [18, 25],
+  iconAnchor: [16, 32], 
+  popupAnchor: [0, -32] 
+});
 
 function Contact() {
-  const [setHover] = useState(false);
+  const [hover, setHover] = useState(false);
 
   useEffect(() => {
-    document.body.style.backgroundColor = "#fff9db"; // ตั้งค่าพื้นหลังสีเหลือง
+    document.body.style.backgroundColor = "#fff9db";
     return () => {
-      document.body.style.backgroundColor = ""; // คืนค่าเดิมเมื่อออกจากหน้า
+      document.body.style.backgroundColor = "";
     };
   }, []);
 
   return (
-    <Container className="mt-3">
+    <Container className="mt-5">
       <Row>
         <Col md={6}>
           {/* Animation แสดงการ์ดที่อยู่ */}
@@ -51,22 +61,24 @@ function Contact() {
         <Col md={6}>
           {/* Animation แสดงแผนที่ */}
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }}>
-            <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-              <GoogleMap mapContainerStyle={mapContainerStyle} center={center} zoom={15}>
-                <Marker position={center} />
-              </GoogleMap>
-            </LoadScript>
+            <div style={{ width: "100%", height: "350px", borderRadius: "10px", overflow: "hidden" }}>
+              <MapContainer center={defaultCenter} zoom={14} style={{ width: "100%", height: "100%" }}>
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                
+                {/* เพิ่ม Marker บนแผนที่ */}
+                <Marker position={defaultCenter} icon={icon}>
+                  <Popup>สถานที่ตั้งของเรา</Popup>
+                </Marker>
+              </MapContainer>
+            </div>
           </motion.div>
         </Col>
       </Row>
 
-      <Row>
+      <Row className="mt-4">
         <Col>
           {/* Animation ของโซเชียลมีเดีย */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}  // ลดค่า scale ให้ต่ำลง
-            transition={{ type: "spring", stiffness: 80, damping: 15 }} // ลดความแข็งแรงของการดีด (stiffness) และเพิ่ม damping
-          >
+          <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 80, damping: 15 }}>
             <Card className="p-3 shadow-sm social-card" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
               <Card.Body>
                 <Card.Title>📢 โซเชียลมีเดีย</Card.Title>
