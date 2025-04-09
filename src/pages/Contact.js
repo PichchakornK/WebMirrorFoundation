@@ -8,7 +8,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet"; // Import leaflet for custom icons
 import markerIcon from "../pics/markerIcon.png"; // Import image
 
-const defaultCenter = { lat: 13.79112, lng: 100.49678 };
+const defaultCenter = { lat: 13.86893, lng: 100.57914 };  
 
 // Use the imported image directly for the marker icon
 const icon = new L.Icon({

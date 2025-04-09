@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "donation-center-9576e"
-  }
+    "default": "donation-center-9576e",
+    " ": "donation-center-9576e"
+  },
+  "targets": {},
+  "etags": {}
 }
