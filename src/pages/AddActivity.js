@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { db } from "../firebase";
-import { Form, Button, Alert, Container, Card, Row, Col } from "react-bootstrap";
+import { Form, Button, Alert, Container, Card, Row, Col, Accordion } from "react-bootstrap";
 import { collection, addDoc, doc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 
 function AddActivity() {
@@ -127,6 +127,8 @@ function AddActivity() {
     setError("");
   };
 
+
+
   return (
     <Container fluid className="py-5" style={{ backgroundColor: "#f8f9fa", minHeight: "100vh" }}>
       <Row className="justify-content-center">
@@ -187,7 +189,7 @@ function AddActivity() {
                     </Col>
                     <Col md={6}>
                       <Form.Group controlId="formBasicLongitude">
-                        <Form.Label style={{ fontWeight: "bold" }}>ลองจิจูด (Longitude)</Form.Label>
+                        <Form.Label style={{ fontWeight: "bold" }}>ลองจิจูด (Longtitude)</Form.Label>
                         <Form.Control type="text" name="longitude" placeholder="เช่น 100.5018" value={activity.longtitude} onChange={handleChange} required />
                       </Form.Group>
                     </Col>
@@ -217,25 +219,61 @@ function AddActivity() {
         {isAdmin && (
           <Col md={6}>
             <Card style={{ padding: "30px", boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.08)", borderRadius: "12px" }}>
-              <h2 className="mb-3" style={{ color: "#007bff" }}>รายการกิจกรรม</h2>
-              {activitiesList.length > 0 ? (
-                <ul className="list-group">
-                  {activitiesList.map((act) => (
-                    <li key={act.id} className="list-group-item d-flex justify-content-between align-items-center">
-                      <div>
-                        <strong style={{ color: "#343a40" }}>{act.name}</strong>
-                        <br />
-                        <small className="text-muted">{new Date(act.date).toLocaleDateString()}</small>
-                      </div>
-                      <Button variant="info" size="sm" onClick={() => handleEdit(act)} style={{ fontWeight: "bold" }}>
-                        แก้ไข
-                      </Button>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-muted">ไม่มีกิจกรรมในขณะนี้</p>
-              )}
+            <h2 className="mb-3" style={{ color: "#007bff" }}>รายการกิจกรรม</h2>
+            {activitiesList.length > 0 ? (
+              <Accordion defaultActiveKey="0">
+                {Object.entries(
+                  activitiesList.reduce((groups, act) => {
+                    const groupName = act.name;
+                    if (!groups[groupName]) {
+                      groups[groupName] = [];
+                    }
+                    groups[groupName].push(act);
+                    return groups;
+                  }, {})
+                ).map(([groupName, groupItems], index) => (
+                  <Accordion.Item eventKey={index.toString()} key={groupName}>
+                    <Accordion.Header>{groupName}</Accordion.Header>
+                    <Accordion.Body>
+                      <ul className="list-group">
+                        {groupItems.map((act) => (
+                          <li key={act.id} className="list-group-item d-flex justify-content-between align-items-start flex-wrap">
+                            <div>
+                              <strong style={{ color: "#343a40" }}>{act.description}</strong>
+                              <br />
+                              <small className="text-muted">
+                                {act.date?.toDate
+                                  ? act.date.toDate().toLocaleDateString("th-TH", {
+                                      year: "numeric",
+                                      month: "long",
+                                      day: "numeric",
+                                    })
+                                  : act.date}
+                              </small>
+                              <br />
+                              <span className="text-muted">{act.location}</span>
+                            </div>
+                            <div className="mt-2 mt-sm-0">
+                              <Button
+                                variant="info"
+                                size="sm"
+                                onClick={() => handleEdit(act)}
+                                style={{ fontWeight: "bold" }}
+                              >
+                                แก้ไข
+                              </Button>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                ))}
+              </Accordion>
+            ) : (
+              <p className="text-muted">ไม่มีกิจกรรมในขณะนี้</p>
+            )}
+
             </Card>
           </Col>
         )}
