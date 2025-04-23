@@ -96,7 +96,7 @@ return (
               transition={{ delay: index * 0.1, duration: 1 }}
             >
             <Marker
-              position={{ lat: latitude, lng: longitude }}
+              position={{ lat: latitude, lng: longtitude }}
               icon={customIcon} // เพิ่มไอคอนที่กำหนดไว้
               eventHandlers={{
                 click: () => setSelectedActivity(act),
