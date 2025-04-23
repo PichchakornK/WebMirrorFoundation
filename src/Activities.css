@@ -2,6 +2,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3 !important; /* แสดง 3 บรรทัด */
+    line-clamp: 3; /* <-- เพิ่มอันนี้ */
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
