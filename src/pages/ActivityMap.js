@@ -80,10 +80,10 @@ return (
           const latitude = parseFloat(act.latitude);
           const longitude = parseFloat(act.longtitude);
           
-          console.log('Latitude:', latitude, 'Longitude:', longitude); // ตรวจสอบค่าพิกัด
+          console.log('Latitude:', latitude, 'Longitude:', longtitude); // ตรวจสอบค่าพิกัด
 
-          // ตรวจสอบค่าของ latitude และ longitude
-          if (isNaN(latitude) || isNaN(longitude)) {
+          // ตรวจสอบค่าของ latitude และ longtitude
+          if (isNaN(latitude) || isNaN(longtitude)) {
             console.warn(`พิกัดไม่ถูกต้องสำหรับกิจกรรม: ${act.name}`, act.latitude, act.longtitude);
             return null;
           }
