@@ -41,7 +41,6 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/activities" element={<Activities />} />
             <Route path="/add-activity" element={<AddActivity />} />
-            <Route path="/" element={<Activities />} />
             <Route path="/activity/:name" element={<ActivityDetail />} />
           </Routes>
         </div>
