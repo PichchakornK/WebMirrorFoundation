@@ -9,7 +9,7 @@ import ActivityMap from "./pages/ActivityMap.js";
 import Activities from "./pages/Activities.js";
 import ActivityDetail from "./pages/ActivityDetail.js";
 import './app2.css'
-// import "./home.css"
+
 
 
 function App() {

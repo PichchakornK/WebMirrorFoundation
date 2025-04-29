@@ -80,10 +80,10 @@ return (
           const latitude = parseFloat(act.latitude);
           const longitude = parseFloat(act.longtitude);
           
-          console.log('Latitude:', latitude, 'Longitude:', longtitude); // ตรวจสอบค่าพิกัด
+          console.log('Latitude:', latitude, 'Longitude:', longitude); // ตรวจสอบค่าพิกัด
 
           // ตรวจสอบค่าของ latitude และ longtitude
-          if (isNaN(latitude) || isNaN(longtitude)) {
+          if (isNaN(latitude) || isNaN(longitude)) {
             console.warn(`พิกัดไม่ถูกต้องสำหรับกิจกรรม: ${act.name}`, act.latitude, act.longtitude);
             return null;
           }
@@ -96,7 +96,7 @@ return (
               transition={{ delay: index * 0.1, duration: 1 }}
             >
             <Marker
-              position={{ lat: latitude, lng: longtitude }}
+              position={{ lat: latitude, lng: longitude }}
               icon={customIcon} // เพิ่มไอคอนที่กำหนดไว้
               eventHandlers={{
                 click: () => setSelectedActivity(act),
