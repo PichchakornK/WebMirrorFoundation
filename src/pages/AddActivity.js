@@ -16,7 +16,7 @@ function AddActivity() {
     date: "",
     location: "",
     latitude: "",
-    longitude: "",
+    longtitude: "",
     imgURL: "",
   });
   const [isEditing, setIsEditing] = useState(false);
@@ -90,18 +90,18 @@ function AddActivity() {
         await updateDoc(activityRef, {
           ...activity,
           latitude: parseFloat(activity.latitude),
-          longitude: parseFloat(activity.longitude),
+          longtitude: parseFloat(activity.longtitude),
         });
         setSuccessMessage("✅ แก้ไขกิจกรรมสำเร็จ!");
       } else {
         await addDoc(collection(db, "activities"), {
           ...activity,
           latitude: parseFloat(activity.latitude),
-          longitude: parseFloat(activity.longitude),
+          longtitude: parseFloat(activity.longtitude),
         });
         setSuccessMessage("✅ เพิ่มกิจกรรมสำเร็จ!");
       }
-      setActivity({ id: "", name: "", description: "", date: "", location: "", latitude: "", longitude: "", imgURL: "" });
+      setActivity({ id: "", name: "", description: "", date: "", location: "", latitude: "", longtitude: "", imgURL: "" });
       setIsEditing(false);
     } catch (error) {
       console.error("Error adding/updating document: ", error);
@@ -121,7 +121,7 @@ function AddActivity() {
   };
 
   const handleCancelEdit = () => {
-    setActivity({ id: "", name: "", description: "", date: "", location: "", latitude: "", longitude: "", imgURL: "" });
+    setActivity({ id: "", name: "", description: "", date: "", location: "", latitude: "", longtitude: "", imgURL: "" });
     setIsEditing(false);
     setSuccessMessage("");
     setError("");
@@ -189,15 +189,15 @@ function AddActivity() {
                     </Col>
                     <Col md={6}>
                       <Form.Group controlId="formBasicLongitude">
-                        <Form.Label style={{ fontWeight: "bold" }}>ลองจิจูด (Longtitude)</Form.Label>
-                        <Form.Control type="text" name="longitude" placeholder="เช่น 100.5018" value={activity.longtitude} onChange={handleChange} required />
+                        <Form.Label style={{ fontWeight: "bold" }}>ลองจิจูด (Longitude)</Form.Label>
+                        <Form.Control type="text" name="longtitude" placeholder="เช่น 100.5018" value={activity.longtitude} onChange={handleChange} required />
                       </Form.Group>
                     </Col>
                   </Row>
 
                   <Form.Group className="mb-3" controlId="formBasicImgURL">
                     <Form.Label style={{ fontWeight: "bold" }}>ลิงก์รูปภาพ</Form.Label>
-                    <Form.Control type="text" name="imgURL" placeholder="URL ของรูปภาพกิจกรรม" value={activity.imgURL} onChange={handleChange} required />
+                    <Form.Control type="text" name="imgURL" placeholder="URL ของรูปภาพกิจกรรม" value={activity.imgURL} onChange={handleChange} />
                   </Form.Group>
 
                   <div className="d-flex justify-content-end">
@@ -219,7 +219,7 @@ function AddActivity() {
         {isAdmin && (
           <Col md={6}>
             <Card style={{ padding: "30px", boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.08)", borderRadius: "12px" }}>
-            <h2 className="mb-3" style={{ color: "#007bff" }}>รายการกิจกรรม</h2>
+            <h2 className="mb-3" style={{ color: "#007bff" }}>แก้ไขกิจกรรม</h2>
             {activitiesList.length > 0 ? (
               <Accordion defaultActiveKey="0">
                 {Object.entries(
